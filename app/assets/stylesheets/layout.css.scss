@@ -3,12 +3,12 @@
 // Default font family
 @font-face {
   font-family: 'gotham-rounded';
-  src: url(gotham-rounded-medium.otf);
+  src: font-url('gotham-rounded-medium.otf');
 }
 
 // Body background
 body {
-  background-image: url(body_bg.png);
+  background-image: image-url('body_bg.png');
   background-position: center;
   color: #fff;
 }
