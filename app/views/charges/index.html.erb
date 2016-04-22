@@ -1,0 +1,36 @@
+<%= form_tag charges_path, id: 'stripeForm' do %>
+<!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
+<article>
+ <%= label_tag 'amount', 'To Pay', class: 'amount' %>
+ <%= label_tag 'amount', "$#{@total}", class: "amount-figure" %>
+</article> <br>
+<button id="stripe-button">Pay over</button>
+<%= hidden_field_tag 'stripeToken' %>
+<%= hidden_field_tag 'stripeEmail' %>
+<%= hidden_field_tag 'stripeAmount' %>
+<script src="https://checkout.stripe.com/checkout.js">
+ var handler = StripeCheckout.configure({
+   key: "<%= Rails.configuration.stripe['publishable_key'] %>",
+   token: function (token, args) {
+     $("#stripeToken").value = token.id;
+     $("#stripeEmail").value = token.email;
+     $("#stripeAmount").value = <%= @total %>;
+     $("#stripeForm").submit();
+   }
+ });
+ 
+ $('#stripe-button').on('click', function (e) {
+       // Open Checkout with further options
+       handler.open({
+         name: 'Stas Andrichuk',
+         description: 'Your description goes here',
+         amount: <%= @total.to_i * 100 %>
+       });
+       e.preventDefault();
+     });
+ 
+ $(window).on('popstate', function() {
+   handler.close();
+ });
+</script>
+<% end %>
