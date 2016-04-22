@@ -36,7 +36,7 @@ gem 'acts_as_shopping_cart'
 
 gem 'puma'
 
-gem 'rails_12factor', group: :production
+# gem 'rails_12factor', group: :production
 
 gem 'pry'
 
