@@ -36,6 +36,8 @@ gem 'acts_as_shopping_cart'
 
 gem 'puma'
 
+gem 'rails_12factor', group: :production
+
 gem 'pry'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
