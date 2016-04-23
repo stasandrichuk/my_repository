@@ -1,3 +1,4 @@
+
 <%= form_tag charges_path, id: 'stripeForm' do %>
 <!-- <script src="https://checkout.stripe.com/checkout.js"></script> -->
 <article>
@@ -8,13 +9,14 @@
 <%= hidden_field_tag 'stripeToken' %>
 <%= hidden_field_tag 'stripeEmail' %>
 <%= hidden_field_tag 'stripeAmount' %>
-<script src="https://checkout.stripe.com/checkout.js">
+<script type="text/javascript"> 
+$(document).ready(function($) {
  var handler = StripeCheckout.configure({
-   key: "<%= Rails.configuration.stripe['publishable_key'] %>",
+   key: "<%= Rails.configuration.stripe[:publishable_key] %>",
    token: function (token, args) {
-     $("#stripeToken").value = token.id;
-     $("#stripeEmail").value = token.email;
-     $("#stripeAmount").value = <%= @total %>;
+     $("#stripeToken").val(token.id);
+     $("#stripeEmail").val(token.email);
+     $("#stripeAmount").val(<%= @total %>);
      $("#stripeForm").submit();
    }
  });
@@ -24,7 +26,7 @@
        handler.open({
          name: 'Stas Andrichuk',
          description: 'Your description goes here',
-         amount: <%= @total.to_i * 100 %>
+         amount: <%= (@total.to_f * 100).to_i %>
        });
        e.preventDefault();
      });
@@ -32,5 +34,7 @@
  $(window).on('popstate', function() {
    handler.close();
  });
+
+});
 </script>
 <% end %>

@@ -11,7 +11,8 @@ class ChargesController < ApplicationController
 
 	def create
     	# Amount in cents
-    	amount = params[:stripeAmount].to_i * 100
+    	amount = (params[:stripeAmount].to_f * 100).to_i
+    	binding.pry
 	    # Create the customer in Stripe
 	    customer = Stripe::Customer.create(
 	    	email: params[:stripeEmail],
@@ -26,7 +27,9 @@ class ChargesController < ApplicationController
 	    	currency: 'usd'
 	    )
 
-	# place more code upon successfully creating the charge
+	current_user.shopping_cart.clear
+	redirect_to root_path
+
 	rescue Stripe::CardError => e
 		flash[:error] = e.message
 		redirect_to charges_path
