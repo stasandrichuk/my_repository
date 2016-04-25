@@ -10,6 +10,7 @@
 <%= hidden_field_tag 'stripeAmount' %>
 <script type="text/javascript"> 
 $(document).ready(function($) {
+  
  var handler = StripeCheckout.configure({
    key: "<%= Stripe.api_key %>",
    token: function (token, args) {
