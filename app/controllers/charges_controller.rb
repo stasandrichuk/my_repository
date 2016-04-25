@@ -13,6 +13,8 @@ class ChargesController < ApplicationController
     	# Amount in cents
     	amount = (params[:stripeAmount].to_f * 100).to_i
 	    # Create the customer in Stripe
+	    # binding.pry
+	    Stripe.api_key = "sk_test_GVmuEMsHReig7JJnNT73Qgnf"
 	    customer = Stripe::Customer.create(
 	    	email: params[:stripeEmail],
 	    	card: params[:stripeToken]
