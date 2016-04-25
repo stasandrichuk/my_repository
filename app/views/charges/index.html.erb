@@ -11,7 +11,7 @@
 <script type="text/javascript"> 
 $(document).ready(function($) {
  var handler = StripeCheckout.configure({
-   key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+   key: "<%= Stripe.api_key %>",
    token: function (token, args) {
      $("#stripeToken").val(token.id);
      $("#stripeEmail").val(token.email);
