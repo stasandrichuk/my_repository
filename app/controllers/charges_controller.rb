@@ -14,7 +14,8 @@ class ChargesController < ApplicationController
     	amount = (params[:stripeAmount].to_f * 100).to_i
 	    # Create the customer in Stripe
 	    # binding.pry
-	    Stripe.api_key = "sk_test_GVmuEMsHReig7JJnNT73Qgnf"
+	    # Stripe.api_key = "sk_test_GVmuEMsHReig7JJnNT73Qgnf"
+	    Stripe.api_key = Rails.application.secrets.stripe_secret_key
 	    customer = Stripe::Customer.create(
 	    	email: params[:stripeEmail],
 	    	card: params[:stripeToken]

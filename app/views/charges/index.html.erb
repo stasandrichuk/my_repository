@@ -10,9 +10,8 @@
 <%= hidden_field_tag 'stripeAmount' %>
 <script type="text/javascript"> 
 $(document).ready(function($) {
-  
  var handler = StripeCheckout.configure({
-   key: "<%= Stripe.api_key %>",
+   key: "<%= Rails.configuration.stripe[:publishable_key] %>",
    token: function (token, args) {
      $("#stripeToken").val(token.id);
      $("#stripeEmail").val(token.email);
