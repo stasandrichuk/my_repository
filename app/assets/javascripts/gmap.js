@@ -1,4 +1,6 @@
+
 var handler = Gmaps.build('Google');
+
 handler.buildMap({
     provider: {
       disableDefaultUI: true
