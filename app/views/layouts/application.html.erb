@@ -10,6 +10,18 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>     
     <%= javascript_include_tag "https://checkout.stripe.com/checkout.js" %>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      var myKey = "AIzaSyCMl4aZmSFX9mACw1GcwGLUriCcIcj9OZM";
+    </script>
+    <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=" + myKey + "&sensor=false&callback=initialize">
+    </script>
+
+    <%= javascript_include_tag "gmap" %> 
+    <script>
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+    </script>
     <%= csrf_meta_tags %>
   </head>
 
