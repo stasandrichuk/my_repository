@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160429085554) do
     t.datetime "created_at",                                                         null: false
     t.datetime "updated_at",                                                         null: false
     t.integer  "shopping_cart_id"
-    t.decimal  "latitude",               precision: 10, scale: 7, default: 39.0392
+    t.decimal  "latitude",               precision: 10, scale: 7, default: -39.0392
     t.decimal  "longitude",              precision: 10, scale: 7, default: 125.7625
   end
 
