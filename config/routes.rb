@@ -6,7 +6,12 @@ Rails.application.routes.draw do
     get 'remove/:product_id', to: 'shopping_carts#remove', as: :remove_one_from
   end
 
-  resources :charges
-  
+  resources :charges, only: [:index] do
+  	
+  end
+
+  match "charges/stripe", to: 'charges#stripe', :via => :post, as: :charge_by_stripe
+  match "charges/paypal", to: 'charges#paypal', :via => :post, as: :charge_by_paypal
+
   root 'products#index'
 end

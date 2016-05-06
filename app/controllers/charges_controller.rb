@@ -3,13 +3,16 @@ class ChargesController < ApplicationController
 
 	def index
 		@total = params[:total]
+		if params[:gateway] == 'paypal'
+			redirect_to charge_by_paypal_path
+		end
 	end
 
-	def new
-		# this will remain empty unless you need to set some instance variables to pass on
+	def paypal
+		
 	end
 
-	def create
+	def stripe
     	# Amount in cents
     	amount = (params[:stripeAmount].to_f * 100).to_i
 	    # Create the customer in Stripe
